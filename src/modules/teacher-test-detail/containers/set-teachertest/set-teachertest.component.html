@@ -1,0 +1,127 @@
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.47)" size="medium" color="#fff" type="line-spin-clockwise-fade"></ngx-spinner>
+<sb-layout-dashboard>
+    <sb-dashboard-head title="Set Exam" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <div id="exam">
+        <div class="row">
+            <div class="col-md-6">
+
+            </div>
+            <div style="text-align:end" class="col-md-6">
+                <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p>Subject Name: <b>English</b></p>
+                <p>Teacher Name: <b>Ayesha</b></p>
+            </div>
+            <div style="text-align:end" class="col-md-6">
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+
+                        <div class="card-body">
+                            <div>
+                                <input type="file" accept="image/*" (input)="on_select($event)" id="p_img" #p_img
+                                    style="display:none">
+
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="Rollno">Exam Date
+                                            </label>
+                                            <div id="date-picker-example"
+                                                class="md-form md-outline input-with-post-icon datepicker">
+                                                <input type="date" id="start" name="trip-start" value="2018-07-22"
+                                                    min="2018-01-01" max="2018-12-31"> <i
+                                                    class="fas fa-calendar input-prefix" tabindex=0></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="Rollno">Exam Time
+                                            </label>
+                                            <div id="date-picker-example"
+                                                class="md-form md-outline input-with-post-icon datepicker">
+                                                <input type="time" id="appt" name="appt" min="09:00" max="18:00">
+                                                <i class="fas fa-calendar input-prefix" tabindex=0></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="Rollno">Alloted Time (In Minuts)
+                                            </label>
+                                            <div id="date-picker-example"
+                                                class="md-form md-outline input-with-post-icon datepicker">
+                                                <input type="number" id="start" name="trip-start"> <i
+                                                    class="fas fa-calendar input-prefix" tabindex=0></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="small mb-1" for="Rollno">Total Marks
+                                            </label>
+                                            <div id="date-picker-example"
+                                                class="md-form md-outline input-with-post-icon datepicker">
+                                                <input type="number" id="start" name="trip-start"> <i
+                                                    class="fas fa-calendar input-prefix" tabindex=0></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+
+                        <div class="card-body">
+                            <div>
+
+
+                                <div class="form-group"><label class="small mb-1"
+                                        for="inputEmailAddress">Question</label><input [(ngModel)]="email"
+                                        class="form-control py-4" id="inputEmailAddress" type="text"
+                                        aria-describedby="emailHelp" placeholder="Enter Question" /></div>
+                                <div class="form-group"><label class="small mb-1" for="optionOne">Option
+                                        One</label><input [(ngModel)]="email" class="form-control py-4" id="optionOne"
+                                        type="text" aria-describedby="emailHelp" placeholder="Enter Option" /></div>
+                                <div class="form-group"><label class="small mb-1" for="optionTwo">Option
+                                        Two</label><input [(ngModel)]="email" class="form-control py-4" id="optionTwo"
+                                        type="text" aria-describedby="emailHelp" placeholder="Enter Option" /></div>
+                                <div class="form-group"><label class="small mb-1" for="optionthree">Option
+                                        Three</label><input [(ngModel)]="email" class="form-control py-4"
+                                        id="optionthree" type="text" aria-describedby="emailHelp"
+                                        placeholder="Enter Option" /></div>
+                                <div class="form-group"><label class="small mb-1" for="optionfour">Option
+                                        Four</label><input [(ngModel)]="email" class="form-control py-4" id="optionfour"
+                                        type="text" aria-describedby="emailHelp" placeholder="Enter Option" /></div>
+                            </div>
+                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block"
+                                (click)="sign_up()">Add Question</a></div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</sb-layout-dashboard>

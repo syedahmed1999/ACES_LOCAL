@@ -1,0 +1,63 @@
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.47)" size="medium" color="#fff" type="line-spin-clockwise-fade"></ngx-spinner>
+<sb-layout-dashboard>
+    <sb-dashboard-head title="Result Details" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <div id="exam">
+        <div class="row">
+            <div class="col-md-6">
+
+            </div>
+            <div style="text-align:end" class="col-md-6">
+                <button type="button" class="btn btn-secondary" (click)="exportAsPDF(exam)">Make PDF</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p>Subject Name: <b>English</b></p>
+                <p>Teacher Name: <b>Ayesha</b></p>
+                <p>Status <b>Passed</b></p>
+            </div>
+            <div style="text-align:end" class="col-md-6">
+                <p>Time Alloted: <b>300 min</b></p>
+                <p>Total Marks: <b>100</b></p>
+                <p>Attained Marks: <b>50</b></p>
+            </div>
+        </div>
+        <div class="row" style="flex: 1;justify-content: center;">
+    
+            <div class="question bg-white p-3 border-bottom">
+                <div class="d-flex flex-row align-items-center question-title">
+                    <h3 class="text-danger">Q.</h3>
+                    <h5 class="mt-1 ml-2">Which of the following country has largest population?</h5>
+                </div>
+                <div class="ans ml-2">
+                    <label>Your Answer: <span>Brazil</span>
+                    </label>
+                </div>
+                <div class="ans ml-2">
+                    <label class="radio">Correct Answer: <span>Brazil</span>
+                    </label>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row" style="flex: 1;justify-content: center;">
+    
+            <div class="question bg-white p-3 border-bottom">
+                <div class="d-flex flex-row align-items-center question-title">
+                    <h3 class="text-danger">Q.</h3>
+                    <h5 class="mt-1 ml-2">Which of the following country has largest population?</h5>
+                </div>
+                <div class="ans ml-2">
+                    <label>Your Answer: <span>Brazil</span>
+                    </label>
+                </div>
+                <div class="ans ml-2">
+                    <label class="radio">Correct Answer: <span>Brazil</span>
+                    </label>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</sb-layout-dashboard>

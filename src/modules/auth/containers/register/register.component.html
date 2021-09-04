@@ -1,0 +1,149 @@
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.47)" size="medium" color="#fff" type="line-spin-clockwise-fade"></ngx-spinner>
+
+
+<sb-layout-auth>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header">
+                        <h3 class="text-center font-weight-light my-4">Create Account (Step {{shown_step}})</h3>
+                    </div>
+                    <div class="card-body">
+                        <div *ngIf="step == '1'">
+                            <input type="file" accept="image/*" (input)="on_select($event)" id="p_img" #p_img
+                                style="display:none">
+                            <div class=" form-row image-div">
+                                <div class=" col-md-6 form-group"><label class="small mb-1" for="Rollno">Profile
+                                        Pictue</label>
+                                    <label class="small mb-1" for="Rollno">Please note that this image will be used as a
+                                        reference for Facial Recognition</label>
+
+                                </div>
+                                <div class='col-md-6 image'>
+                                    <img *ngIf="!image_bool" (click)="p_img.click()" align="right" class="no-image"
+                                        width="100" height="100" src="../../assets/img/upload.png" alt="">
+                                    <img *ngIf="image_bool" (click)="p_img.click()" align="right" class="no-image"
+                                        width="100" height="100" src="{{profile_img}}" alt="">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="small mb-1" for="Rollno">First
+                                            Name
+                                        </label>
+                                        <input [(ngModel)]="f_name"  class="form-control py-4"
+                                            id="fi_name"  type="text" placeholder="Enter first name" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="inputLastName">Last
+                                            Name</label><input [(ngModel)]="l_name" class="form-control py-4"
+                                            id="inputLastName" type="text" placeholder="Enter last name" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group"><label class="small mb-1" for="mobNum">Mobile Number (with country
+                                    code)</label><input [(ngModel)]="tel" class="form-control py-4" id="mobNum"
+                                    type="tel" placeholder="Enter mobile number" /></div>
+                            <div class="form-group"><label class="small mb-1"
+                                    for="inputEmailAddress">Email</label><input [(ngModel)]="email"
+                                    class="form-control py-4" id="inputEmailAddress" type="email"
+                                    aria-describedby="emailHelp" placeholder="Enter email address" /></div>
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1"
+                                            for="inputPassword">Password</label><input [(ngModel)]="password"
+                                            class="form-control py-4" id="inputPassword" type="password"
+                                            placeholder="Enter password" /></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="inputConfirmPassword">Confirm
+                                            Password</label><input [(ngModel)]="c_password" class="form-control py-4"
+                                            id="inputConfirmPassword" type="password" placeholder="Confirm password" />
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-left: 10px">
+                                    <label class="small mb-1">Are you a Student?</label><!-- <div id="is_student" >-->
+                                    <div style="display: flex; align-items: center"><input
+                                            (change)="radio_select('student')" id="stu" type="radio" name="fav_language"
+                                            value="HTML" /><label for="stu">Yes</label><br /></div>
+                                    <div style="display: flex; align-items: center"><input
+                                            (change)="radio_select('teacher')" id="nstu" type="radio"
+                                            name="fav_language" value="HTML" /><label for="nstu">No</label><br /></div>
+                                    <!-- </div>-->
+                                </div>
+                            </div>
+                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block"
+                                    (click)="goto_step_two()">Go to Step 2</a></div>
+                        </div>
+                        <div *ngIf="step == '2'">
+                            <div class="form-row">
+                                <div *ngIf="role_id == '1'" class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="Rollno">Roll
+                                            No</label><input [(ngModel)]="roll_no" class="form-control py-4" id="Rollno"
+                                            type="text" placeholder="Enter roll no" /></div>
+                                </div>
+                                <div *ngIf="role_id == '2'" class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="t_id">Teacher
+                                            ID</label><input [(ngModel)]="t_id" class="form-control py-4" id="t_id"
+                                            type="text" placeholder="Enter ID" />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1"
+                                            for="program">Program</label><input class="form-control py-4" id="program"
+                                            type="text" value="BSCS" disabled='true' placeholder="" /></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="sem">Select
+                                            Semester</label>
+                                        <select (change)="select_sem()" [(ngModel)]="sem_id" name="sem"
+                                            class="custom-select" style="width:200px;" id="sem">
+                                            <option *ngFor="let se of total_sem" [value]="se.id">{{se.name}}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div *ngIf="sem_id" class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="hi">Selected
+                                            Semester(s)</label>
+                                        <div style="display: flex" id="hi">
+                                            <div *ngFor="let s of sem_arr; let i = index" class="sem-tag">
+                                                <span style="margin: 0px 0px 0px 5px;">{{s.name}}
+                                                    <img (click)="del_sem(i)" class="cross-img" align="right"
+                                                        src="../../assets/img/cross.png" alt="">
+                                                </span>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="all_subject" class="form-group">
+                                <label class="small mb-1" for="joo">Selected Courses</label>
+                                <div id='joo' style="display: flex">
+                                    <div *ngFor="let s of all_subject; let i = index" class="sem-tag">
+                                        <span style="margin: 0px 0px 0px 5px;">{{s.name}}
+                                            <img (click)="del_course(i)" class="cross-img" align="right"
+                                                src="../../assets/img/cross.png" alt="">
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block"
+                                    (click)="go_back()">Back to Step 1</a></div>
+                            <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block"
+                                    (click)="sign_up()">Create Account</a></div>
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        <div class="small"><a [routerLink]="['/auth']" routerLinkActive="router-link-active">Have an account? Go to login</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</sb-layout-auth>
