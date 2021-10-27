@@ -15,14 +15,7 @@ import {AuthService} from '../../services/auth.service';
 export class LoginComponent implements OnInit {
     email: any = '';
     password: any = '';
-    login_teacher: any = {
-        email: 't@gmail.com',
-        password: '123456'
-    }
-    login_student: any = {
-        email: 's@gmail.com',
-        password: '123456'
-    }
+
     constructor(private router: Router, private loader: NgxSpinnerService, private service:AuthService) {
         if (localStorage.getItem('password')) {
             this.password = localStorage.getItem('password');

@@ -12,7 +12,7 @@ import swal from 'sweetalert';
     styleUrls: ['register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-    step: any = '2'
+    step: any = '1'
     shown_step: any = '1'
     sem_id: string = '';
     user_type: string = '';

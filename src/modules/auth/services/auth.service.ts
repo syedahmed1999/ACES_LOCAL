@@ -40,6 +40,20 @@ export class AuthService {
     );
   }
 
+  f_1(data: any): Observable<any> {
+    const path = environment.key + "verifyemail";
+    return this.http.post(path, data).pipe(
+      map(results => results)
+    );
+  }
+
+  f_2(data: any): Observable<any> {
+    const path = environment.key + "verifysecurityanswer";
+    return this.http.post(path, data).pipe(
+      map(results => results)
+    );
+  }
+
 
   public verify_img(data: any): Observable<any> {
     data = JSON.stringify(data);
