@@ -54,6 +54,13 @@ export class AuthService {
     );
   }
 
+  f_3(data: any): Observable<any> {
+    const path = environment.key + "changePassword";
+    return this.http.post(path, data).pipe(
+      map(results => results)
+    );
+  }
+
 
   public verify_img(data: any): Observable<any> {
     data = JSON.stringify(data);

@@ -11,6 +11,20 @@ import {ProfileService} from '../../services/profile.service';
     styleUrls: ['profilec.component.scss'],
 })
 export class ProfilecComponent implements OnInit {
+    name:any = '';
+    image_url:any = '';
+    roll_no:any = '';
+    security_answer:any = '';
+    security_question:any = '';
+    role:any;
+    subjects:any = [];
+    email:any = '';
+    // name:any = '';
+    // name:any = '';
+    // name:any = '';
+    // name:any = '';
+    // name:any = '';
+
     constructor(private loader:NgxSpinnerService, private service:ProfileService, private router:Router) {
         this.get_profile_details()
     }
@@ -22,14 +36,19 @@ export class ProfilecComponent implements OnInit {
         this.service.dashboard(data).subscribe((response) => {
             
             if(response.result){
-                // localStorage.setItem('id', response.data.id)
-                // localStorage.setItem('email', response.data.email)
-                // localStorage.setItem('name', response.data.name)
-                // localStorage.setItem('user_type', response.data.role.name)
-                // localStorage.setItem('email', response.data.email)
-                // var sub = JSON.stringify(response.subjects)
-                // localStorage.setItem('subject',sub)
-
+                this.name = response.data.name
+                this.image_url = response.data.image_url
+                this.roll_no = response.data.roll_no
+                this.security_answer = response.data.security_answer
+                this.security_question = response.data.security_question
+                if (response.data.role_id == 1) {
+                    this.role = "Student"
+                }else{
+                    this.role = "Teacher"
+                }
+                this.email = localStorage.getItem("email")
+                
+                this.subjects = response.data.subjects
                 this.loader.hide();
             }else{
                 this.loader.hide();

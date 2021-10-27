@@ -15,17 +15,20 @@ export class ForgotPasswordComponent implements OnInit {
     security_question:any = '';
     email:any = '';
     step:any ='1';
+    security_answer:any = '';
+    cpassword:any = '';
+    npassword:any = '';
     constructor(private router: Router, private service: AuthService, private loader: NgxSpinnerService) {}
     ngOnInit() {}
 
-    forget_password_1(){
+    async forget_password_1(){
         const data = {email:this.email}
         this.service.f_1(data).subscribe((res)=>{
             if(res.result){
                 this.step = '2'
                 this.security_question = res.data
             }else{
-                swal('Error', "No email exists", 'error');
+                swal('Error', "No message exists", 'error');
             }
         }),((err:any)=>{
             swal('Error', "Something went wrong", 'error');
@@ -34,11 +37,10 @@ export class ForgotPasswordComponent implements OnInit {
     }
 
     forget_password_2(){
-        const data = {email:this.email}
+        const data = {email:this.email, answer:this.security_answer}
         this.service.f_2(data).subscribe((res)=>{
             if(res.result){
-                this.step = '2'
-                this.security_question =res.data
+
 
             }else{
                 swal('Error', "No email exists", 'error');
@@ -47,15 +49,18 @@ export class ForgotPasswordComponent implements OnInit {
     }
 
     forget_password_3(){
-        const data = {email:this.email}
-        this.service.f_1(data).subscribe((res)=>{
-            if(res.result){
-                this.step = '2'
-                this.security_question =res.data
+        if (this.npassword == this.cpassword) {
+            const data = {email:this.email, password:this.npassword}
+            this.service.f_3(data).subscribe((res)=>{
+                if(res.result){
+                    this.router.navigate(['auth/login'])
+                    swal('Success', "Password changed successfully", 'success');
 
-            }else{
-                swal('Error', "No email exists", 'error');
-            }
-        })
+                }else{
+                    swal('Error', "No email exists", 'error');
+                }
+            })
+        }
+
     }
 }
