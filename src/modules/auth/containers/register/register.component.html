@@ -79,6 +79,16 @@
                         </div>
                         <div *ngIf="step == '2'">
                             <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="Security-question">Security Question
+                                    </label><input [(ngModel)]="question" class="form-control py-4" id="question"
+                                            type="text" placeholder="Enter question..." /></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group"><label class="small mb-1" for="Security-answer">Security Answer
+                                    </label><input [(ngModel)]="answer" class="form-control py-4" id="answer"
+                                            type="text" placeholder="Enter answer..." /></div>
+                                </div>
                                 <div *ngIf="role_id == '1'" class="col-md-6">
                                     <div class="form-group"><label class="small mb-1" for="Rollno">Roll
                                             No</label><input [(ngModel)]="roll_no" class="form-control py-4" id="Rollno"

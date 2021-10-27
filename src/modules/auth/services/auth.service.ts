@@ -40,6 +40,7 @@ export class AuthService {
     );
   }
 
+
   public verify_img(data: any): Observable<any> {
     data = JSON.stringify(data);
     const path = 'https://api.luxand.cloud/photo/verify';

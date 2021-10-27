@@ -12,11 +12,13 @@ import swal from 'sweetalert';
     styleUrls: ['register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-    step: any = '1'
+    step: any = '2'
     shown_step: any = '1'
     sem_id: string = '';
     user_type: string = '';
     sem_arr: any = [];
+    question:any = '';
+    answer:any = '';
     total_sem: any = [
         {
             id: '1',
@@ -147,7 +149,7 @@ export class RegisterComponent implements OnInit {
             const chec = { 'uni_teacher_id': this.t_id }
             this.service.check_teacher(chec).subscribe((res) => {
                 if (res.result) {
-                    const data = { profile_img: this.profile_img, role_id: this.role_id, name: this.f_name + ' ' + this.l_name, email: this.email, password: this.password, subject_id: selected_sub, uni_teacher_id: this.t_id, roll_no: this.roll_no }
+                    const data = { security_question:this.question, security_answer:this.answer,profile_img: this.profile_img, role_id: this.role_id, name: this.f_name + ' ' + this.l_name, email: this.email, password: this.password, subject_id: selected_sub, uni_teacher_id: this.t_id, roll_no: this.roll_no }
                     this.service.registeration(data).subscribe((result) => {
                         this.loader.hide();
                         if (result.result) {
@@ -168,7 +170,7 @@ export class RegisterComponent implements OnInit {
                 }
             })
         } else {
-            const data = { profile_img: this.profile_img, role_id: this.role_id, name: this.f_name + ' ' + this.l_name, email: this.email, password: this.password, subject_id: selected_sub, uni_teacher_id: this.t_id, roll_no: this.roll_no }
+            const data = {security_question:this.question, security_answer:this.answer, profile_img: this.profile_img, role_id: this.role_id, name: this.f_name + ' ' + this.l_name, email: this.email, password: this.password, subject_id: selected_sub, uni_teacher_id: this.t_id, roll_no: this.roll_no }
             this.service.registeration(data).subscribe((result) => {
                 this.loader.hide();
                 if (result.result) {
@@ -228,7 +230,7 @@ export class RegisterComponent implements OnInit {
         var settings = {
             "async": true,
             "crossDomain": true,
-            "url": "https://api.luxand.cloud/photo/emotions",
+            "url": "https://api.luxand.cloud/photo/landmarks",
             "method": "POST",
             "headers": {
                 "token": "c545bbc3f79744959bd6fcd6dd467d62"
@@ -252,6 +254,6 @@ export class RegisterComponent implements OnInit {
                 swal('Error', 'No Face Detected', 'error')
             }
 
-        });
+        })
     }
 }

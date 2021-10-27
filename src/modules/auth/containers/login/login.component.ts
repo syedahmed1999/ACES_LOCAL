@@ -69,8 +69,9 @@ export class LoginComponent implements OnInit {
         // }
         console.log(this.email, this.password)
         const data = { email: this.email, password: this.password }
+        this.loader.show();
         this.service.login(data).subscribe((response) => {
-            this.loader.show();
+            
             if(response.result){
                 swal('Success', "Login Successfully", 'success');
                 localStorage.setItem('id', response.data.id)
@@ -89,7 +90,6 @@ export class LoginComponent implements OnInit {
             }
             console.log(response)
         }), (err: any) => {
-            alert
             console.log(err)
             this.loader.hide();
             swal('Error', "No User Exits", 'error');
