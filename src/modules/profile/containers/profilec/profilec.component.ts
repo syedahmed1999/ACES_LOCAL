@@ -18,6 +18,8 @@ export class ProfilecComponent implements OnInit {
     security_question:any = '';
     role:any;
     subjects:any = [];
+
+    incomingExam:any;
     email:any = '';
     // name:any = '';
     // name:any = '';
@@ -41,13 +43,14 @@ export class ProfilecComponent implements OnInit {
                 this.roll_no = response.data.roll_no
                 this.security_answer = response.data.security_answer
                 this.security_question = response.data.security_question
+                this.incomingExam = response.data.incomingExam
                 if (response.data.role_id == 1) {
                     this.role = "Student"
                 }else{
                     this.role = "Teacher"
                 }
                 this.email = localStorage.getItem("email")
-                
+
                 this.subjects = response.data.subjects
                 this.loader.hide();
             }else{
