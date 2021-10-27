@@ -7,13 +7,13 @@
 
             </div>
             <div style="text-align:end" class="col-md-6">
-                <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+                <button type="button" class="btn btn-primary" (click)="set_exam()">Save</button>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <p>Subject Name: <b>English</b></p>
-                <p>Teacher Name: <b>Ayesha</b></p>
+                <p>Teacher Name: <b>{{name}}</b></p>
             </div>
             <div style="text-align:end" class="col-md-6">
 
@@ -26,8 +26,6 @@
 
                         <div class="card-body">
                             <div>
-                                <input type="file" accept="image/*" (input)="on_select($event)" id="p_img" #p_img
-                                    style="display:none">
 
                                 <div class="form-row">
                                     <div class="col-md-6">
@@ -36,10 +34,11 @@
                                             </label>
                                             <div id="date-picker-example"
                                                 class="md-form md-outline input-with-post-icon datepicker">
-                                                <input type="date" id="start" name="trip-start" value="2018-07-22"
-                                                    min="2018-01-01" max="2018-12-31"> <i
+                                                <input type="date" id="start" name="trip-start" value=""
+                                                    min="2018-01-01" max="2100-12-31" (input)="get_date($event)"> <i
                                                     class="fas fa-calendar input-prefix" tabindex=0></i>
                                             </div>
+
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -48,7 +47,8 @@
                                             </label>
                                             <div id="date-picker-example"
                                                 class="md-form md-outline input-with-post-icon datepicker">
-                                                <input type="time" id="appt" name="appt" min="09:00" max="18:00">
+                                                <input (input)="get_time($event)" type="time" id="appt" name="appt"
+                                                    min="09:00" max="18:00">
                                                 <i class="fas fa-calendar input-prefix" tabindex=0></i>
                                             </div>
                                         </div>
@@ -59,8 +59,9 @@
                                             </label>
                                             <div id="date-picker-example"
                                                 class="md-form md-outline input-with-post-icon datepicker">
-                                                <input type="number" id="start" name="trip-start"> <i
-                                                    class="fas fa-calendar input-prefix" tabindex=0></i>
+                                                <input type="number" [(ngModel)]="exam_duration" id="start"
+                                                    name="trip-start"> <i class="fas fa-calendar input-prefix"
+                                                    tabindex=0></i>
                                             </div>
                                         </div>
                                     </div>
@@ -70,8 +71,9 @@
                                             </label>
                                             <div id="date-picker-example"
                                                 class="md-form md-outline input-with-post-icon datepicker">
-                                                <input type="number" id="start" name="trip-start"> <i
-                                                    class="fas fa-calendar input-prefix" tabindex=0></i>
+                                                <input type="number" [(ngModel)]="total_marks" id="start"
+                                                    name="trip-start"> <i class="fas fa-calendar input-prefix"
+                                                    tabindex=0></i>
                                             </div>
                                         </div>
                                     </div>
@@ -96,25 +98,48 @@
 
 
                                 <div class="form-group"><label class="small mb-1"
-                                        for="inputEmailAddress">Question</label><input [(ngModel)]="email"
-                                        class="form-control py-4" id="inputEmailAddress" type="text"
+                                        for="instruction">Instructions</label><textarea [(ngModel)]="instruction"
+                                        class="form-control py-4" id="instruction" aria-describedby="emailHelp"
+                                        placeholder="Enter Instructions"></textarea></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+
+                        <div class="card-body">
+                            <div>
+
+
+                                <div class="form-group"><label class="small mb-1" for="question">Question</label><input
+                                        [(ngModel)]="question" class="form-control py-4" id="question" type="text"
                                         aria-describedby="emailHelp" placeholder="Enter Question" /></div>
                                 <div class="form-group"><label class="small mb-1" for="optionOne">Option
-                                        One</label><input [(ngModel)]="email" class="form-control py-4" id="optionOne"
+                                        One</label><input [(ngModel)]="op1" class="form-control py-4" id="optionOne"
                                         type="text" aria-describedby="emailHelp" placeholder="Enter Option" /></div>
                                 <div class="form-group"><label class="small mb-1" for="optionTwo">Option
-                                        Two</label><input [(ngModel)]="email" class="form-control py-4" id="optionTwo"
+                                        Two</label><input [(ngModel)]="op2" class="form-control py-4" id="optionTwo"
                                         type="text" aria-describedby="emailHelp" placeholder="Enter Option" /></div>
                                 <div class="form-group"><label class="small mb-1" for="optionthree">Option
-                                        Three</label><input [(ngModel)]="email" class="form-control py-4"
-                                        id="optionthree" type="text" aria-describedby="emailHelp"
-                                        placeholder="Enter Option" /></div>
-                                <div class="form-group"><label class="small mb-1" for="optionfour">Option
-                                        Four</label><input [(ngModel)]="email" class="form-control py-4" id="optionfour"
+                                        Three</label><input [(ngModel)]="op3" class="form-control py-4" id="optionthree"
                                         type="text" aria-describedby="emailHelp" placeholder="Enter Option" /></div>
+                                <div class="form-group"><label class="small mb-1" for="optionfour">Option
+                                        Four</label><input [(ngModel)]="op4" class="form-control py-4" id="optionfour"
+                                        type="text" aria-describedby="emailHelp" placeholder="Enter Option" /></div>
+                                <div class="form-group"><label class="small mb-1" for="correct">Correct Option
+                                        </label><input [(ngModel)]="correct" class="form-control py-4" id="correct"
+                                        type="text" aria-describedby="emailHelp" placeholder="Enter Correct Option" /></div>
                             </div>
                             <div class="form-group mt-4 mb-0"><a class="btn btn-primary btn-block"
-                                (click)="sign_up()">Add Question</a></div>
+                                    (click)="add_question()">Add Question</a></div>
                         </div>
 
                     </div>

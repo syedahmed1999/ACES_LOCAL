@@ -1,18 +1,9 @@
-/* tslint:disable: ordered-imports*/
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-/* Module */
 import { TeacherTestDetailModule } from './teacher-test-detail.module';
-
-/* Containers */
 import * as teacherTestDetailContainers from './containers';
-
-/* Guards */
 import * as teacherTestDetailGuards from './guards';
 import { SBRouteData } from '@modules/navigation/models';
-
-/* Routes */
 export const ROUTES: Routes = [
     {
         path: 'teacherview',

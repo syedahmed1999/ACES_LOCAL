@@ -13,12 +13,12 @@
         </div>
     </div>
     <div class="bs-example">
-        <div class="accordion" id="accordionExample">
-            <div class="card">
+        <div *ngIf= "subjects.length != 0" class="accordion" id="accordionExample">
+            <div *ngFor="let sub of subjects" class="card">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
-                        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">I2C</button>
-                        <button style="float: right;" type="button" class="btn btn-primary" >Set Exam</button>											
+                        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">{{sub.name}}</button>
+                        <button style="float: right;" type="button" class="btn btn-primary" (click)="set_exam(sub.id)">Set Exam</button>											
                     </h2>
                 </div>
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -57,43 +57,7 @@
                     </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                        <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapsene">English</button>	
-                        <button style="float: right;" class="btn btn-primary" (click)="set_exam()" >Set Exam</button>																			
-                    </h2>
-                </div>
-                <div id="collapsene" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
-                        <a href="https://www.tutorialrepublic.com/html-tutorial/" target="_blank">Learn more.</a>
 
-                        <table class="table table-striped table-light">
-                            <thead>
-                                <tr>
-                                    <th>Roll No</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>clarkkent@mail.com</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>clarkkent@mail.com</td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>clarkkent@mail.com</td>
-                                </tr>            
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     

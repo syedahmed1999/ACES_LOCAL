@@ -76,7 +76,19 @@ export class ProfileEditComponent implements OnInit {
     }
 
     save(){
-        
+        this.loader.show();
+        const data = {email:localStorage.getItem("email"), profile_img:this.image_url}
+        this.service.updateProfileImage(data).subscribe((res)=>{
+            if (res.result) {
+                this.loader.hide()
+                this.router.navigate(['profile/profile'])
+            }
+            else {
+                this.loader.hide()
+                swal("Error", "Some Error Detected", "error")
+            }
+        }), ((error:any) =>{
+        })
     }
 
     verify_img(img: any) {
@@ -106,13 +118,13 @@ export class ProfileEditComponent implements OnInit {
 
             if(response.status == 'success'){
                 // obj.image_bool = true;
-                obj.profile_img = img;
+                obj.image_url = img;
                 swal('Success', 'Face Detected', 'success')
                 localStorage.setItem('img', str)
 
             }else{
                 // obj.image_bool = false;
-                obj.profile_img = obj.image_url;
+                // obj.profile_img = obj.image_url;
                 swal('Error', 'No Face Detected', 'error')
             }
 

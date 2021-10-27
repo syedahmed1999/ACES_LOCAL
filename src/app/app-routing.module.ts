@@ -50,6 +50,11 @@ const routes: Routes = [
             import('modules/profile/profile-routing.module').then(m => m.ProfileRoutingModule),
     },
     {
+        path: 'studentview',
+        loadChildren: () =>
+            import('modules/student-test-detail/student-test-detail-routing.module').then(m => m.StudentTestDetailRoutingModule),
+    },
+    {
         path: 'teacherview',
         loadChildren: () =>
             import('modules/teacher-test-detail/teacher-test-detail-routing.module').then(m => m.TeacherTestDetailRoutingModule),

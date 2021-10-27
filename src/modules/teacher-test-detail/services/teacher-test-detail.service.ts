@@ -18,4 +18,18 @@ export class TeacherTestDetailService {
         );
       }
 
+      dashboard(data: any): Observable<any> {
+        const path = environment.key + "dashboard";
+        return this.http.post(path, data).pipe(
+          map(results => results)
+        );
+      }
+
+      createExam(data: any): Observable<any> {
+        const path = environment.key + "createExam";
+        return this.http.post(path, data).pipe(
+          map(results => results)
+        );
+      }
+
 }

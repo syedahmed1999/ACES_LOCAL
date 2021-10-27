@@ -11,7 +11,12 @@ export class ProfileService {
     getProfile$(): Observable<{}> {
         return of({});
     }
-
+    updateProfileImage(data: any): Observable<any> {
+        const path = environment.key + "updateProfileImage";
+        return this.http.post(path, data).pipe(
+          map(results => results)
+        );
+    }
     dashboard(data: any): Observable<any> {
         const path = environment.key + "dashboard";
         return this.http.post(path, data).pipe(
