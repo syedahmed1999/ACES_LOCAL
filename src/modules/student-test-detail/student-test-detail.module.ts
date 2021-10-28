@@ -19,6 +19,7 @@ import * as studentTestDetailGuards from './guards';
 
 /* Services */
 import * as studentTestDetailServices from './services';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
     imports: [
@@ -28,7 +29,8 @@ import * as studentTestDetailServices from './services';
         FormsModule,
         AppCommonModule,
         NavigationModule,
-        WebcamModule
+        WebcamModule,
+        NgxSpinnerModule
     ],
     providers: [...studentTestDetailServices.services, ...studentTestDetailGuards.guards],
     declarations: [...studentTestDetailContainers.containers, ...studentTestDetailComponents.components],

@@ -12,15 +12,18 @@ import {DashboardService} from '../../services/dashboard.service';
     styleUrls: ['dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
+    data:any;
     constructor(private loader:NgxSpinnerService, private service:DashboardService, private router:Router) {
         this.get_dashboard_info()
     }
     ngOnInit() {}
     ngAfterViewInit() {
-        this.loader.show();
-        setTimeout(() => {
-            this.loader.hide();
-        }, 1000)
+
+    }
+
+    goto_incommingExam(data:any){
+        alert()
+        console.log(data)
     }
     get_dashboard_info() {
         const data = {email:localStorage.getItem("email")}
@@ -28,6 +31,7 @@ export class DashboardComponent implements OnInit {
         this.service.dashboard(data).subscribe((response) => {
             
             if(response.result){
+                this.data = response.data
                 // localStorage.setItem('id', response.data.id)
                 // localStorage.setItem('email', response.data.email)
                 // localStorage.setItem('name', response.data.name)
