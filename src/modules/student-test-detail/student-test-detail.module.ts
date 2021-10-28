@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
+import {WebcamModule} from 'ngx-webcam';
 /* Modules */
 import { AppCommonModule } from '@common/app-common.module';
 import { NavigationModule } from '@modules/navigation/navigation.module';
@@ -28,6 +28,7 @@ import * as studentTestDetailServices from './services';
         FormsModule,
         AppCommonModule,
         NavigationModule,
+        WebcamModule
     ],
     providers: [...studentTestDetailServices.services, ...studentTestDetailGuards.guards],
     declarations: [...studentTestDetailContainers.containers, ...studentTestDetailComponents.components],
