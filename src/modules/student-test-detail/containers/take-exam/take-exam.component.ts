@@ -6,7 +6,7 @@ import * as $ from 'jquery'
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import swal from 'sweetalert';
-import {StudentTestDetailService} from '../../services/student-test-detail.service';
+import { StudentTestDetailService } from '../../services/student-test-detail.service';
 @Component({
     selector: 'sb-take-exam',
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,10 +15,10 @@ import {StudentTestDetailService} from '../../services/student-test-detail.servi
 })
 export class TakeExamComponent implements OnInit {
     image: string = '';
-    warning:any = 3;
-    exam_id:any = '';
-    exam_detail:any = [];
-    submit_arr:any = [];
+    warning: any = 3;
+    exam_id: any = '';
+    exam_detail: any = [];
+    submit_arr: any = [];
     public pictureTaken = new EventEmitter<WebcamImage>();
     // toggle webcam on/off
     public showWebcam = true;
@@ -41,7 +41,7 @@ export class TakeExamComponent implements OnInit {
             });
     }
 
-    ngAfterViewInit(){
+    ngAfterViewInit() {
         setInterval(() => {
             this.triggerSnapshot()
         }, 500000)
@@ -67,57 +67,58 @@ export class TakeExamComponent implements OnInit {
         this.image = webcamImage['_imageAsDataUrl'];
         var arr = [];
         arr = this.image.split('/');
-        arr.splice(0,1);
-        arr.splice(0,1);
+        arr.splice(0, 1);
+        arr.splice(0, 1);
         this.image = arr.join('/');
-        this.image = '/'+this.image
+        this.image = '/' + this.image
         console.log(this.image);
         this.face_recognition(this.image);
     }
 
-    get_exam(){
+    get_exam() {
+        let exam_id = localStorage.getItem("exam_id")
 
-        const data = {exam_id:8}
-        this.service.get_exam(data).subscribe((res)=>{
+        const data = { exam_id: exam_id }
+        this.service.get_exam(data).subscribe((res) => {
             this.exam_detail = res.data;
 
         })
     }
 
-    onItemChange(e:any, i:any){
+    onItemChange(e: any, i: any) {
         console.log(e, i)
         let exam = this.exam_detail[i];
         let obj = {
-            'id' : exam.id,
-            'question' : exam.question,
-            'selected_answer' : e,
-            'answer' : exam.answer,
+            'id': exam.id,
+            'question': exam.question,
+            'selected_answer': e,
+            'answer': exam.answer,
         }
         console.log(obj)
         this.submit_arr[i] = obj;
         console.log(this.submit_arr)
     }
 
-    submit_exam(){
+    submit_exam() {
         const data = {
-            'user_id' : localStorage.getItem("id"),
-            'exam_id' : 8,
-            'submitted_answer' : this.submit_arr,
+            'user_id': localStorage.getItem("id"),
+            'exam_id': localStorage.getItem("exam_id"),
+            'submitted_answer': this.submit_arr,
             "status": "attempted"
         }
-        this.service.submit_exam(data).subscribe((res)=>{
-            if(res.result){
+        this.service.submit_exam(data).subscribe((res) => {
+            if (res.result) {
                 swal("Success", "Exam submitted sucessfully", "success")
                 this.router.navigate(['/dashboard'])
             }
-            else{
+            else {
                 swal("Error", "Exam not submitted", "error")
                 window.location.reload()
             }
         })
     }
 
-    face_recognition(img:any) {
+    face_recognition(img: any) {
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -126,19 +127,34 @@ export class TakeExamComponent implements OnInit {
             "headers": {
                 "token": "c545bbc3f79744959bd6fcd6dd467d62"
             },
-            "data": {"photo":img}
+            "data": { "photo": img }
         }
-        var obj=this;
-        
+        var obj = this;
+
         $.ajax(settings).done(function (response) {
             console.log(response);
-            if(response.length != 0){
+            if (response.length != 0) {
 
-            }else{
+            } else {
                 obj.warning = obj.warning - 1
-                swal("Warning", obj.warning+" warning left", "error")
-                if(obj.warning == 0){
-                    obj.router.navigate(['/dashboard'])
+                swal("Warning", obj.warning + " warning left", "error")
+                if (obj.warning == 0) {
+                    const data = {
+                        'user_id': localStorage.getItem("id"),
+                        'exam_id': localStorage.getItem("exam_id"),
+                        'submitted_answer': obj.submit_arr,
+                        "status": "cheated"
+                    }
+                    obj.service.submit_exam(data).subscribe((res) => {
+                        if (res.result) {
+                            swal("Success", "Exam submitted sucessfully", "success")
+                            obj.router.navigate(['/dashboard'])
+                        }
+                        else {
+                            swal("Error", "Exam not submitted", "error")
+                            window.location.reload()
+                        }
+                    })                    
                 }
             }
         });
@@ -150,7 +166,7 @@ export class TakeExamComponent implements OnInit {
     public get nextWebcamObservable(): Observable<boolean | string> {
         return this.nextWebcam.asObservable();
     }
-    constructor(private loader:NgxSpinnerService, private service:StudentTestDetailService, private router:Router) {
+    constructor(private loader: NgxSpinnerService, private service: StudentTestDetailService, private router: Router) {
         this.get_exam()
     }
 }

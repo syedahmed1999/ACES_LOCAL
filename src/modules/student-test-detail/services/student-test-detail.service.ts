@@ -25,4 +25,17 @@ export class StudentTestDetailService {
         );
       }
 
+      get_detail(data: any): Observable<any> {
+        const path = environment.key + "getSubjectDetails";
+        return this.http.post(path, data).pipe(
+          map(results => results)
+        );
+      }
+      dashboard(data: any): Observable<any> {
+        const path = environment.key + "dashboard";
+        return this.http.post(path, data).pipe(
+          map(results => results)
+        );
+      }
+
 }

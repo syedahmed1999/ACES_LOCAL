@@ -7,7 +7,10 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
     styleUrls: ['dashboard-cards.component.scss'],
 })
 export class DashboardCardsComponent implements OnInit {
-    constructor() {}
+    user_type:any = '';
+    constructor() {
+        this.user_type = localStorage.getItem("user_type")
+    }
     ngOnInit() {
 
     }

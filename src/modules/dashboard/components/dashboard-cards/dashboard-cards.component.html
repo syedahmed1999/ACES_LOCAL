@@ -1,14 +1,17 @@
 <div class="row">
     <div class="col-xl-3 col-md-6">
-        <sb-card-view-details link="/dashboard" background="bg-primary"><div class="card-body">Primary Card</div></sb-card-view-details>
+        <sb-card-view-details link="/dashboard" background="bg-primary"><div class="card-body">Dashboard</div></sb-card-view-details>
     </div>
     <div class="col-xl-3 col-md-6">
-        <sb-card-view-details link="/dashboard" background="bg-warning"><div class="card-body">Warning Card</div></sb-card-view-details>
+        <sb-card-view-details link="/profile/profile" background="bg-warning"><div class="card-body">Profile</div></sb-card-view-details>
     </div>
     <div class="col-xl-3 col-md-6">
-        <sb-card-view-details link="/dashboard" background="bg-success"><div class="card-body">Success Card</div></sb-card-view-details>
+        <sb-card-view-details link="/profile/profile-edit" background="bg-success"><div class="card-body">Edit Profile</div></sb-card-view-details>
     </div>
-    <div class="col-xl-3 col-md-6">
-        <sb-card-view-details link="/dashboard" background="bg-danger"><div class="card-body">Danger Card</div></sb-card-view-details>
+    <div *ngIf="user_type == 'student'" class="col-xl-3 col-md-6">
+        <sb-card-view-details link="/studentview/studentsubjectdetail" background="bg-danger"><div class="card-body">Exam Detail</div></sb-card-view-details>
+    </div>
+    <div *ngIf="user_type != 'student'" class="col-xl-3 col-md-6">
+        <sb-card-view-details link="/teacherview/mainexam" background="bg-danger"><div class="card-body">Exam Detail</div></sb-card-view-details>
     </div>
 </div>
