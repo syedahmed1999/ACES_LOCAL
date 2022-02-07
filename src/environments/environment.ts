@@ -4,7 +4,7 @@
 
 export const environment = {
     production: false,
-    key:'http://192.168.0.107:8000/api/',
+    key:'http://10.1.200.219:8000/api/',
     key_l:'e49fc5c84e7c4001942eb139c198aed3'
 };
 

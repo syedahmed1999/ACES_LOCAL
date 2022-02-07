@@ -19,6 +19,7 @@ export class MainTeachertestComponent implements OnInit {
     ngOnInit() {}
 
     set_exam(id:any){
+        // localStorage.setItem("su")l
         localStorage.setItem('subid', id)
         this.router.navigate(['/teacherview/setExam'])
     }

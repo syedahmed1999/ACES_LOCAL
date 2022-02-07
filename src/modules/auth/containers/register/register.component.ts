@@ -174,7 +174,7 @@ export class RegisterComponent implements OnInit {
             this.service.registeration(data).subscribe((result) => {
                 this.loader.hide();
                 if (result.result) {
-                    this.create_person();
+                    // this.create_person();
                     this.router.navigate(['/auth/login'])
                     swal("Success", "User Registered Successfully", "success")
                 } else {
@@ -201,7 +201,7 @@ export class RegisterComponent implements OnInit {
         }
     }
 
-    create_person(){
+    create_person(img:any){
         var settings = {
             "async": true,
             "crossDomain": true,
@@ -210,7 +210,7 @@ export class RegisterComponent implements OnInit {
             "headers": {
                 "token": "c545bbc3f79744959bd6fcd6dd467d62"
             },
-            "data": {"name":this.f_name+' '+this.l_name,"photo":this.sent_image}
+            "data": {"name":this.f_name+' '+this.l_name,"photo":img}
         }
         
         $.ajax(settings).done(function (response) {
@@ -247,6 +247,7 @@ export class RegisterComponent implements OnInit {
                 obj.profile_img = img;
                 swal('Success', 'Face Detected', 'success')
                 localStorage.setItem('img', str)
+                obj.create_person(img)
 
             }else{
                 obj.image_bool = false;

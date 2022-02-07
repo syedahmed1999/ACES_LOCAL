@@ -13,16 +13,25 @@ import {DashboardService} from '../../services/dashboard.service';
 })
 export class DashboardComponent implements OnInit {
     data:any;
-    constructor(private loader:NgxSpinnerService, private service:DashboardService, private router:Router) {
+    constructor(private loader:NgxSpinnerService, private service:DashboardService, private router:Router) {4
         this.get_dashboard_info()
+        if(localStorage.getItem('user_type') == "teacher"){
+            this.get_all()
+        }
     }
     ngOnInit() {}
     ngAfterViewInit() {
 
     }
 
+    get_all(){
+        const data = {email:localStorage.getItem('email')}
+        this.service.get_everything(data).subscribe((res)=>{
+
+        })
+    }
+
     goto_incommingExam(data:any){
-        alert()
         console.log(data)
     }
     get_dashboard_info() {

@@ -19,4 +19,11 @@ export class DashboardService {
       map(results => results)
     );
   }
+
+  get_everything(data: any): Observable<any> {
+    const path = environment.key + "getAllResult";
+    return this.http.post(path, data).pipe(
+      map(results => results)
+    );
+  }
 }
